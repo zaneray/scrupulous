@@ -1,0 +1,46 @@
+
+
+ /*Override Bootstrap forms*/
+
+ .radio, .checkbox {
+  padding-left: 0;
+ }
+
+ .radio ul, .checkbox ul {
+  list-style-type: none;
+  padding-left: 0;
+ }
+
+ .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+   margin-left: 0;
+   margin-right: .5em;
+ }
+
+fieldset {
+  margin-bottom: 4em;
+}
+
+.container {
+  margin: 50px auto;
+  max-width: 360px;
+}
+
+.container-2 {
+  margin: 50px auto;
+  max-width: 500px;
+}
+
+
+.form-control {
+  height: auto;
+}
+
+
+.form-control, .btn {
+  border-radius: 0;
+}
+
+.form-inline .form-group {
+  margin-right: .5em;
+}
+
