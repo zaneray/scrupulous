@@ -1,7 +1,7 @@
 Scrupulous
 =======
 
-Scrupulous.js is a super simple inline form validation using HTML5 attributes. Add all the standard HTML5 form attributes and call the plugin and it will automatically add inline validation with full styleable elements and class names. 
+Scrupulous.js is super simple, client side, inline form validation using HTML5 attributes. Add all the standard HTML5 form attributes and call the plugin and it will automatically add inline validation with full styleable elements and class names. 
 
 Scrupulous.js is built around [Bootstrap](http://getbootstrap.com/), using the same class name and HTML structure for simple implementation. Not using Bootstrap? No problem, just update the class names in the CSS file and with minor changes it should still work fine. 
 
@@ -9,6 +9,7 @@ Scrupulous.js is built around [Bootstrap](http://getbootstrap.com/), using the s
 * scrupulous.css: you will need to include the scrupulous.css which adds some additional styling to the form elements. 
 * jQuery: Scrupulous should work with most newer versions of jQuery, Have not tested how far back it is supported
 * scrupulous.js: Runs a jQuery plugin. 
+* Call the $.scrupulous() plugin on the form(s) you would like to validate. 
 
 		$(function(){
 			$('.validate-form').scrupulous();	
