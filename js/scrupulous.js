@@ -1,15 +1,24 @@
 (function ($) {
   $.fn.scrupulous = function (callback) {
+    //stop everything if checkValidity does not exist, and I'm talking to you <= IE9.
+    if(typeof document.createElement( 'input' ).checkValidity != 'function') {
+      return false;
+    }
     var $forms        = this,
         $inputs       = $forms.find('select, input, textarea').not(':disabled'),
         emailPattern  = "[^@]+@[^@]+\.[a-zA-Z]{2,6}",
         $el,$form,$formGroup,elId,validity,errorMessage;
+
+   
+
+    alert('yo');
+
     
     $forms.find('input[type="email"]').attr('pattern',emailPattern);
 
     $forms.attr('novalidate',true); //set all forms to novalidate to avoid default browser validation
 
-     
+    
 
     /*----------------------------------------------
       equalTo(el);
