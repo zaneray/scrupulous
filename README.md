@@ -10,19 +10,19 @@ Scrupulous.js is built around [Bootstrap](http://getbootstrap.com/), using the s
 * jQuery: Scrupulous should work with most newer versions of jQuery, Have not tested how far back it is supported
 * scrupulous.js: Runs a jQuery plugin. 
 
-	<script>
 		$(function(){
-			$('.my-form').scrupulous();	
+			$('.validate-form').scrupulous();	
 		});
-	</script>
 
 ##HTML
 Then just add standard HTML5 attributes to your form and Scrupulous takes care of the rest. 
 
-	<div class="form-group">
-		<label for="email">Email</label>
-		<input type="email" class="form-control" id="email" name="email" title="Please Enter a Valid Email Address" required>
+	<form class="validate-form" method="post" action="/">
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input type="email" class="form-control" id="email" name="email" title="Please Enter a Valid Email Address" required>
     </div>
+  </form>
 
 Note that the title of the field becomes the error message, mimmicking the default browser HTML5 validation messaging.
 
