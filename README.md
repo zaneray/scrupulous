@@ -49,7 +49,7 @@ When the form validates the following HTML is generated dynamically
 #Legacy Browser Support
 Currently if the browser does not support element.checkValidity Scrupulous will silently fail. You should be using solid server side validation as a backup. It may be possible to use it in conjunction with a HTML5 form validation polyfill. Let us know if you hve any luck. 
 
-#Modernizr.load example
+#Modernizr.load Example
 Scrupulous may also be loaded with Modernizr.load as well. 
 
 	Modernizr.load({
