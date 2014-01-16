@@ -82,9 +82,16 @@
       $el.addClass('invalid');
       $el.removeClass('valid');
       $formGroup =  $el.parents('.form-group');
+      //let Developer know that form-group does not exist
+      if($formGroup.length == 0) {
+        console.log('Warning: Scrupulous needs a .form-group element to append errors.');
+      }
       $formGroup.addClass('has-error');
       $formGroup.removeClass('has-success');
       errorMessage = $el.attr('title');
+      if(errorMessage == undefined) {
+        errorMessage = 'This field has an error';
+      }
       //only append if there isn't one. helpful with radios and checkboxes
       if($formGroup.find('.error-message').length === 0) {
         $formGroup.append('<label class="error-message inactive" for="' + $el.attr('id') + '">' + errorMessage + '</label>');
