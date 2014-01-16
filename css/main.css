@@ -2,6 +2,12 @@
 
  /*Override Bootstrap forms*/
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
  .radio, .checkbox {
   padding-left: 0;
  }
@@ -27,7 +33,20 @@ fieldset {
 
 .container-2 {
   margin: 50px auto;
-  max-width: 500px;
+  max-width: 600px;
+}
+
+.container-2 .form-control {
+  width: 150px;
+}
+
+
+.form-group {
+  margin-bottom: 1.8em;
+}
+
+.form-group label {
+  margin-bottom: .5em;
 }
 
 
