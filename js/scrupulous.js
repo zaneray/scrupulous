@@ -146,6 +146,10 @@
 
     //Check Validity on Blur
       $inputs.on('blur',function(){
+        if($(this).attr('type') === 'number' && $(this).val() == ''){ 
+          //exist because letters in a number field register as a blank value
+          $(this).val('');
+        }
         if($(this).val() !== '') {
           validityChecker(this);
         }
