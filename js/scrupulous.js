@@ -9,16 +9,10 @@
         emailPattern  = "[^@]+@[^@]+\.[a-zA-Z]{2,6}",
         $el,$form,$formGroup,elId,validity,errorMessage;
 
-   
-
-    alert('yo');
-
-    
     $forms.find('input[type="email"]').attr('pattern',emailPattern);
 
     $forms.attr('novalidate',true); //set all forms to novalidate to avoid default browser validation
 
-    
 
     /*----------------------------------------------
       equalTo(el);
