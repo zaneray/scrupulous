@@ -1,5 +1,4 @@
 .form-group {
-  margin-bottom: 1.8em;
   position: relative;
   box-sizing: border-box;
 }
@@ -8,10 +7,7 @@
   box-sizing: border-box;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: .5em;
-}
+
 
 .has-error .form-control, .has-error .form-control:focus {
   border-color: #ff4e00;
