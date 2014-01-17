@@ -122,7 +122,6 @@
             </div>
           </fieldset>
           <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-        </div>
         </form>
       </div>
       <div class="container-2">
@@ -141,12 +140,37 @@
             <button type="submit" class="btn btn-primary">Sign in</button>
           </form>
         </fieldset>
-      </div>  
+      </div> 
+      <div class="container">
+        <form class="callback-form" action="#" method="get">
+          <fieldset>
+            <h3>Validation with Callback</h3>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" name="name" title="Please Enter a Name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" title="Please Enter a Valid Email Address" required>
+            </div>
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" class="form-control" id="age" name="age" title="Your Age can only be a number" required>
+            </div>
+            
+          <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+          </form>
+        </div>
+        
+      </div> 
       <script src="js/vendor/jquery-1.10.2.min.js"></script>
       <script src="js/scrupulous.js"></script>
       <script>
         $(function(){
           $('.validate-form').scrupulous();
+          $('.callback-form').scrupulous(function(){
+            alert('callback');
+          });
         });
       </script>
 
