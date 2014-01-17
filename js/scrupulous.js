@@ -1,5 +1,5 @@
 (function ($) {
-  $.fn.scrupulous = function (callback) {
+  $.fn.scrupulous = function (callBack) {
     //stop everything if checkValidity does not exist, and I'm talking to you <= IE9.
     if(typeof document.createElement( 'input' ).checkValidity != 'function') {
       return false;
@@ -166,9 +166,6 @@
       $forms.on('submit',function(e){
         $form = $(this);
 
-        if( typeof callBack !== "function" ) { callBack = function(){};}
-        callBack.call(this);
-
         $form.find('select, input, textarea').each(function(){
           validityChecker(this);
         });
@@ -181,6 +178,11 @@
           $form.find('.has-error .invalid:first').focus();
 
           e.preventDefault();
+        }
+        else {
+          //success full validation
+          if( typeof callBack !== "function" ) { callBack = function(){};}
+          callBack.call(this);
         }
       });
   };
