@@ -46,20 +46,6 @@ When the form validates the following HTML is generated dynamically
 		<input type="text" class="form-control valid" id="name" name="name" title="Please Enter a Name" required>
 	</div>
 
-#Legacy Browser Support
-Currently if the browser does not support element.checkValidity Scrupulous will silently fail. You should be using solid server side validation as a backup. It may be possible to use it in conjunction with a HTML5 form validation polyfill. Let us know if you hve any luck. 
-
-#Modernizr.load Example
-Scrupulous may also be loaded with Modernizr.load as well. 
-
-	Modernizr.load({
-      test: Modernizr.input.required,
-      yep: 'js/scrupulous.js',
-      complete: function() {
-        $('#my-form').scrupulous();
-      }
-    });
-
 
 #Optional Properties
 More porperties to be added as new features are needed. 
@@ -85,3 +71,19 @@ Example showing valid and invalid callbacks.
     }
   });
 </code></pre>
+
+#Legacy Browser Support
+Currently if the browser does not support element.checkValidity Scrupulous will silently fail. You should be using solid server side validation as a backup. It may be possible to use it in conjunction with a HTML5 form validation polyfill. Let us know if you hve any luck. 
+
+#Modernizr.load Example
+Scrupulous may also be loaded with Modernizr.load as well. 
+
+  Modernizr.load({
+      test: Modernizr.input.required,
+      yep: 'js/scrupulous.js',
+      complete: function() {
+        $('#my-form').scrupulous();
+      }
+    });
+
+
