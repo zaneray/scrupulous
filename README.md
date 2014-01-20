@@ -51,9 +51,9 @@ More porperties to be added as new features are needed.
 
 <dl>
 <dt><b>valid:</b></dt>
-<dd>A Callback if the form is valid. Must return <i>true</i> or <i>false</i>. Helpful if you are relying on another service to validate the form after the scrupulous script has determined the form. Examples: Credit Card Validation, Address Verification, Username Verification.</dd>
+<dd>A Callback if the form is valid. <b>Must return <i>true</i> or <i>false</i></b>. Helpful if you are relying on another service to validate the form after the scrupulous script has determined the form. Examples: Credit Card Validation, Address Verification, Username Verification.</dd>
 <dt><b>invalid:</b></dt>
-<dd>Callback if the form is invalid. Must return <i>true</i> or <i>false</i>. Helpful if you need added functionality such as showing a global message above the form.</dd>
+<dd>Callback if the form is invalid. Always prevents form submission. Helpful if you need added functionality such as showing a global message above the form.</dd>
 </dl>
 
 ##Example
