@@ -168,9 +168,15 @@
       <script>
         $(function(){
           $('.validate-form').scrupulous();
-          $('.callback-form').scrupulous(function(){
-            alert('callback');
-            return true;
+          $('.callback-form').scrupulous({
+            valid: function(){
+              alert('Valid Callback - Submit the Form');
+              return true;
+            },
+            invalid: function(){
+              alert('Invalid Callback -  Stop the Form');
+              return false;
+            }
           });
         });
       </script>
