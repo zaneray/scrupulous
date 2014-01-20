@@ -182,7 +182,7 @@
         else {
           //success full validation
           if( typeof callBack !== "function" ) { callBack = function(){};}
-          callBack.call(this);
+          return callBack.call(this);
         }
       });
   };
