@@ -1,9 +1,18 @@
 (function ($) {
-  $.fn.scrupulous = function (callBack) {
+  $.fn.scrupulous = function (args) {
     //stop everything if checkValidity does not exist, and I'm talking to you <= IE9.
     if(typeof document.createElement( 'input' ).checkValidity != 'function') {
       return false;
     }
+
+    //future homes for options as needed
+    var options = {
+      valid: null,
+      invalid: null
+    }
+
+    $.extend( options, args );
+
     var $forms        = this,
         $inputs       = $forms.find('select, input, textarea').not(':disabled'),
         emailPattern  = "[^@]+@[^@]+\.[a-zA-Z]{2,6}",
@@ -176,13 +185,27 @@
             $("html, body").animate({ scrollTop: errorScrollTop }, 300);
           }
           $form.find('.has-error .invalid:first').focus();
-
+         
+           //call the invalid callback, rely on that to return true or false to submit the form
+          if(options.invalid != null) {
+            return options.invalid.call(this);
+          }
+          else {
+            //prevent the form from submitting
+            return false;
+          }
           e.preventDefault();
         }
         else {
-          //success full validation
-          if( typeof callBack !== "function" ) { callBack = function(){};}
-          return callBack.call(this);
+          //successful validation
+          
+          //call the invalid callback, rely on that to return true or false to submit the form
+          if(options.valid != null) {
+            return options.valid.call(this);
+          } 
+          else {
+            return true;
+          }
         }
       });
   };
