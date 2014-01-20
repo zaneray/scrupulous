@@ -53,10 +53,35 @@ Currently if the browser does not support element.checkValidity Scrupulous will 
 Scrupulous may also be loaded with Modernizr.load as well. 
 
 	Modernizr.load({
-	    test: Modernizr.input.required,
-	    yep: 'js/scrupulous.js',
-	    complete: function() {
-	      $('#my-form').scrupulous();
-	    }
-	  });
+      test: Modernizr.input.required,
+      yep: 'js/scrupulous.js',
+      complete: function() {
+        $('#my-form').scrupulous();
+      }
+    });
 
+
+#Optional Properties
+More porperties to be added as new features are needed. 
+
+<dl>
+<dt><b>valid:</b></dt>
+<dd>A Callback if the form is valid. Must return <i>true</i> or <i>false</i>. Helpful if you are relying on another service to validate the form after the scrupulous script has determined the form. Examples: Credit Card Validation, Address Verification, Username Verification.</dd>
+<dt><b>invalid:</b></dt>
+<dd>Callback if the form is invalid. Must return <i>true</i> or <i>false</i>. Helpful if you need added functionality such as showing a global message above the form.</dd>
+</dl>
+
+##Example
+Example showing valid and invalid callbacks.
+<pre><code>
+  $('.callback-form').scrupulous({
+    valid: function(){
+      alert('Valid Callback - Submit the Form');
+      return true;
+    },
+    invalid: function(){
+      alert('Invalid Callback -  Stop the Form');
+      return false;
+    }
+  });
+</code></pre>
