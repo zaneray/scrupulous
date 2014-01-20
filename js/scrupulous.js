@@ -7,8 +7,8 @@
 
     //future homes for options as needed
     var options = {
-      valid: null,
-      invalid: null
+      valid: null,  //Pass a valid function through args
+      invalid: null //Pass an invalid function through args
     }
 
     $.extend( options, args );
@@ -179,7 +179,7 @@
           validityChecker(this);
         });
         if($form.find('.has-error').length > 0){
-           //don't submit
+           //unsucessfull validation
           var errorScrollTop = $form.find('.has-error:first').offset().top - 100;
           if(errorScrollTop < $(window).scrollTop()) {
             $("html, body").animate({ scrollTop: errorScrollTop }, 300);
@@ -190,10 +190,8 @@
           if(options.invalid != null) {
             return options.invalid.call(this);
           }
-          else {
-            //prevent the form from submitting
-            return false;
-          }
+
+          //prevent the form from submitting no matter what
           e.preventDefault();
         }
         else {

@@ -46,7 +46,6 @@ When the form validates the following HTML is generated dynamically
 		<input type="text" class="form-control valid" id="name" name="name" title="Please Enter a Name" required>
 	</div>
 
-
 #Optional Properties
 More porperties to be added as new features are needed. 
 
@@ -77,7 +76,7 @@ Currently if the browser does not support element.checkValidity Scrupulous will 
 
 #Modernizr.load Example
 Scrupulous may also be loaded with Modernizr.load as well. 
-
+<pre><code>
   Modernizr.load({
       test: Modernizr.input.required,
       yep: 'js/scrupulous.js',
@@ -85,5 +84,6 @@ Scrupulous may also be loaded with Modernizr.load as well.
         $('#my-form').scrupulous();
       }
     });
+</code></pre>    
 
 
