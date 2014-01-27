@@ -126,11 +126,15 @@ fieldset {
   margin-bottom: 30px;
 }
 
-.credits {
+.center {
   text-align: center;
 }
 
-.credits img {
+.center img {
   margin-top: 10px;
 }
 
+
+.fb-like {
+  margin-left: 30px;
+}
