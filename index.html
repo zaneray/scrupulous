@@ -7,161 +7,167 @@
         <title>Scrupulous.js | Super simple inline form validation using HTML5 attributes.</title>
         <meta name="description" content="Scrupulous.js is a simple form validation jQuery plugin that uses HTML5 attributes">
         <meta name="viewport" content="width=device-width">
-
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/scrupulous.css">
 
+
     </head>
     <body>
+    <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
       <div class="container">
-        <form class="validate-form" action="#" method="get">
-          <h1>Scrupulous</h1>
-          <p>Simple inline form validation using HTML5 attributes that plays nicely with <a href="http://getbootstrap.com/">Bootstrap</a></p>
+          <h1>Scrupulous.js</h1>
+          <p>Scrupulous.js is a jQuery plugin that provides simple, client-side, inline form validation. It uses HTML5 attributes to control validation along with some custom validation methods. Oh, and it plays nicely with <a href="http://getbootstrap.com/">Bootstrap</a>. Check out the demo below, <a href="https://github.com/zaneray/scrupulous">then read the documentation here.</a></p>
+          <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <form class="validate-form" action="#" method="get">
+              <fieldset>
+                <h3>Standard Validation</h3>
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" name="name" title="Please Enter a Name" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" title="Please Enter a Valid Email Address" required>
+                </div>
+                <div class="form-group">
+                  <label for="age">Age</label>
+                  <input type="number" class="form-control" id="age" name="age" title="Your Age can only be a number" required>
+                </div>
+                <div class="form-group">
+                  <label for="undefined-field">Undefined Title Field</label>
+                  <input type="text" class="form-control" id="undefined-field" name="undefined-field" required>
+                </div>
+                <div class="form-group">
+                  <label for="state">State</label>
+                  <select id="state" name="state" class="form-control" title="Please select a state" required>
+                    <option value="">Choose One</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select> 
+                </div>
+                 <div class="form-group">
+                  <label for="textarea">Textarea</label>
+                  <textarea class="form-control" id="textarea" name="textarea" title="This field is required" required></textarea>
+                </div>
+                
+              </fieldset>
+              <fieldset>
+                <h3>Fields that Must Match</h3>
+                <div class="form-group">
+                  <label for="inputpw">Password</label>
+                  <input type="password" pattern=".{6,}" class="form-control" id="inputpw" title="Passwords are at Least 6 Characters" placeholder="Minimum 6 Characters" required>
+                </div>
+                <div class="form-group">
+                  <label for="inputpwrepeat">Repeat Password</label>
+                  <input type="password" pattern=".{6,}" class="form-control fn-equal-to" data-equal-to="inputpw" id="inputpwrepeat" title="Passwords Must Match" required>
+                </div>
+              </fieldset>
+              <fieldset>
+                <h3>Radio Buttons &amp; Checkboxes</h3>
+                <div class="form-group checkbox">
+                  <h4>Select a Checkbox</h4>
+                    <ul>
+                      <li><label><input type="checkbox" value="value1" required="" name="inputcheckbox" title="Please Select an Option 1" class="valid"> Check me out</label></li>
+                      <li><label><input type="checkbox" value="value2" required="" name="inputcheckbox" title="Please Select an Option 2"> Check me out</label></li>
+                      <li><label><input type="checkbox" value="value3" required="" name="inputcheckbox" title="Please Select an Option 3"> Check me out</label></li>
+                    </ul>
+                </div>
+                 <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+              </fieldset>
+             
+            </form>
+          </div>
+        <div class="col-xs-12">
           <fieldset>
-            <h3>Standard Validation</h3>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" name="name" title="Please Enter a Name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" name="email" title="Please Enter a Valid Email Address" required>
-            </div>
-            <div class="form-group">
-              <label for="age">Age</label>
-              <input type="number" class="form-control" id="age" name="age" title="Your Age can only be a number" required>
-            </div>
-            <div class="form-group">
-              <label for="name">Undefined Title Field</label>
-              <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-              <label for="state">State</label>
-              <select id="state" name="state" class="form-control" title="Please select a state" required>
-                <option value="">Choose One</option>
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
-                <option value="AZ">Arizona</option>
-                <option value="AR">Arkansas</option>
-                <option value="CA">California</option>
-                <option value="CO">Colorado</option>
-                <option value="CT">Connecticut</option>
-                <option value="DE">Delaware</option>
-                <option value="DC">District Of Columbia</option>
-                <option value="FL">Florida</option>
-                <option value="GA">Georgia</option>
-                <option value="HI">Hawaii</option>
-                <option value="ID">Idaho</option>
-                <option value="IL">Illinois</option>
-                <option value="IN">Indiana</option>
-                <option value="IA">Iowa</option>
-                <option value="KS">Kansas</option>
-                <option value="KY">Kentucky</option>
-                <option value="LA">Louisiana</option>
-                <option value="ME">Maine</option>
-                <option value="MD">Maryland</option>
-                <option value="MA">Massachusetts</option>
-                <option value="MI">Michigan</option>
-                <option value="MN">Minnesota</option>
-                <option value="MS">Mississippi</option>
-                <option value="MO">Missouri</option>
-                <option value="MT">Montana</option>
-                <option value="NE">Nebraska</option>
-                <option value="NV">Nevada</option>
-                <option value="NH">New Hampshire</option>
-                <option value="NJ">New Jersey</option>
-                <option value="NM">New Mexico</option>
-                <option value="NY">New York</option>
-                <option value="NC">North Carolina</option>
-                <option value="ND">North Dakota</option>
-                <option value="OH">Ohio</option>
-                <option value="OK">Oklahoma</option>
-                <option value="OR">Oregon</option>
-                <option value="PA">Pennsylvania</option>
-                <option value="RI">Rhode Island</option>
-                <option value="SC">South Carolina</option>
-                <option value="SD">South Dakota</option>
-                <option value="TN">Tennessee</option>
-                <option value="TX">Texas</option>
-                <option value="UT">Utah</option>
-                <option value="VT">Vermont</option>
-                <option value="VA">Virginia</option>
-                <option value="WA">Washington</option>
-                <option value="WV">West Virginia</option>
-                <option value="WI">Wisconsin</option>
-                <option value="WY">Wyoming</option>
-              </select> 
-            </div>
-             <div class="form-group">
-              <label for="textarea">Textarea</label>
-              <textarea class="form-control" id="textarea" name="textarea" title="This field is required" required></textarea>
-            </div>
-            
+            <h3>Inline Forms and Validation</h3>
+            <form class="form-inline validate-form" role="form">
+              <div class="form-group">
+                <input type="number" class="form-control" id="numberinput" placeholder="Enter Number" title="Number is Required" required>
+              </div>
+               <div class="form-group">
+                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email" title="Email is Required" required>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" title="Password is Required" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
           </fieldset>
-          <fieldset>
-            <h3>Fields that Must Match</h3>
-            <div class="form-group">
-              <label for="inputpw">Password</label>
-              <input type="password" pattern=".{6,}" class="form-control" id="inputpw" title="Passwords are at Least 6 Characters" placeholder="Minimum 6 Characters" required>
-            </div>
-            <div class="form-group">
-              <label for="inputpwrepeat">Repeat Password</label>
-              <input type="password" pattern=".{6,}" class="form-control fn-equal-to" data-equal-to="inputpw" id="inputpwrepeat" title="Passwords Must Match" required>
-            </div>
-          </fieldset>
-          <fieldset>
-            <h3>Radio Buttons and Checkboxes</h3>
-            <div class="form-group checkbox">
-              <h4>Select a Checkbox</h4>
-                <ul>
-                  <li><label><input type="checkbox" value="value1" required="" name="inputcheckbox" title="Please Select an Option 1" class="valid"> Check me out</label></li>
-                  <li><label><input type="checkbox" value="value2" required="" name="inputcheckbox" title="Please Select an Option 2"> Check me out</label></li>
-                  <li><label><input type="checkbox" value="value3" required="" name="inputcheckbox" title="Please Select an Option 3"> Check me out</label></li>
-                </ul>
-            </div>
-          </fieldset>
-          <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-        </form>
-      </div>
-      <div class="container-2">
-        <fieldset>
-          <h3>Inline Forms and Validation</h3>
-          <form class="form-inline validate-form" role="form">
-            <div class="form-group">
-              <input type="number" class="form-control" id="numberinput" placeholder="Enter Number" title="Number is Required" required>
-            </div>
-             <div class="form-group">
-              <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email" title="Email is Required" required>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" title="Password is Required" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </form>
-        </fieldset>
-      </div> 
-      <div class="container">
-        <form class="callback-form" action="#" method="get">
-          <fieldset>
-            <h3>Validation with Callback</h3>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" id="name" name="name" title="Please Enter a Name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" name="email" title="Please Enter a Valid Email Address" required>
-            </div>
-            <div class="form-group">
-              <label for="age">Age</label>
-              <input type="number" class="form-control" id="age" name="age" title="Your Age can only be a number" required>
-            </div>
-            
-          <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-          </form>
         </div>
-        
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+          <form class="callback-form" action="#" method="get">
+            <fieldset>
+              <h3>Validation with Callback</h3>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" title="Please Enter a Name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" title="Please Enter a Valid Email Address" required>
+              </div>
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" name="age" title="Your Age can only be a number" required>
+              </div>
+              
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </form>
+        </div>
+        <div class="col-xs-12 credits">
+        Brought to you by the folks at<br>
+        <a href="http://www.zaneray.com"><img src="images/ZR-logo.png" alt="The ZaneRay Group"></a>        
       </div> 
       <script src="js/vendor/jquery-1.10.2.min.js"></script>
       <script src="js/scrupulous.js"></script>
