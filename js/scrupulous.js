@@ -182,7 +182,7 @@
            //unsucessfull validation
           var errorScrollTop = $form.find('.has-error:first').offset().top - 100;
           if(errorScrollTop < $(window).scrollTop()) {
-            $("html, body").animate({ scrollTop: errorScrollTop }, 300);
+            $("html").animate({ scrollTop: errorScrollTop }, 300);
           }
           $form.find('.has-error .invalid:first').focus();
          
