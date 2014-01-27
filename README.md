@@ -1,7 +1,7 @@
 Scrupulous
 =======
 
-Scrupulous.js is super simple, client side, inline form validation using HTML5 attributes. Add all the standard HTML5 form attributes and call the plugin and it will automatically add inline validation with full styleable elements and class names. 
+Scrupulous.js is super simple, client side, inline form validation using HTML5 attributes. Add all the standard HTML5 form attributes and call the plugin and it will automatically add inline validation with full styleable elements and class names. <a href="http://zaneray.github.io/scrupulous/">View the demo here.</a>
 
 Scrupulous.js is built around [Bootstrap](http://getbootstrap.com/), using the same class name and HTML structure for simple implementation. Not using Bootstrap? No problem, just update the class names in the CSS file and with minor changes it should still work fine. 
 
@@ -72,9 +72,9 @@ Example showing valid and invalid callbacks.
 </code></pre>
 
 #Legacy Browser Support
-Currently if the browser does not support element.checkValidity Scrupulous will silently fail. You should be using solid server side validation as a backup. It may be possible to use it in conjunction with a HTML5 form validation polyfill. Let us know if you hve any luck. 
+Currently if the browser does not support element.checkValidity Scrupulous will silently fail. You should be using solid server side validation as a backup. It may be possible to use it in conjunction with a HTML5 form validation polyfill. Let us know if you have any luck. 
 
-#Modernizr.load Example
+##Modernizr.load Example
 Scrupulous may also be loaded with Modernizr.load as well. 
 <pre><code>
   Modernizr.load({
