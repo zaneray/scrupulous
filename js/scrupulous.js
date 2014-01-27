@@ -83,6 +83,17 @@
     };
 
     /*----------------------------------------------
+    removeValid($el)
+    function that removes all valid classes from 
+    blank fields
+    ----------------------------------------------*/
+    var removeValid = function($el) {
+      $el.removeClass('valid');
+      $formGroup = $el.parents('.form-group');
+      $formGroup.removeClass('has-success');
+    };
+
+    /*----------------------------------------------
     setInvalid($el)
     function that addes invalid classes and appends
     error message labels to the parent div. 
@@ -114,6 +125,8 @@
     var validityChecker = function(el){
       elValidity = el.checkValidity();
       $el = $(el);
+
+      console.log('elValidity: ' + elValidity);
 
       //if it is an equal-to check status
       if($(el).hasClass('fn-equal-to')){
@@ -168,6 +181,10 @@
         }
         if($(this).val() !== '') {
           validityChecker(this);
+        }
+        else {
+          //if blank remove valid classes. 
+          removeValid($(this));
         }
       }); 
 
