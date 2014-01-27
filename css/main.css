@@ -122,7 +122,15 @@ fieldset {
   margin-bottom: 60px;
 }
 
+.social {
+  margin-bottom: 30px;
+}
+
 .credits {
   text-align: center;
+}
+
+.credits img {
+  margin-top: 10px;
 }
 
