@@ -56,7 +56,6 @@ There are additional validation methods that come in handy that can be controlle
 
 ###Example
 Example showing valid and invalid callbacks.
-<pre><code>
  <div class="form-group">
     <label for="inputpw">Password</label>
     <input type="password" pattern=".{6,}" class="form-control" id="inputpw" title="Passwords are at Least 6 Characters" placeholder="Minimum 6 Characters" required>
@@ -65,7 +64,6 @@ Example showing valid and invalid callbacks.
     <label for="inputpwrepeat">Repeat Password</label>
     <input type="password" pattern=".{6,}" class="form-control" data-equal-to="inputpw" id="inputpwrepeat" title="Passwords Must Match" required>
   </div>
-</code></pre>
 
 #Optional Properties
 More porperties to be added as new features are needed. 
