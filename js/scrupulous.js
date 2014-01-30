@@ -30,8 +30,7 @@
      ----------------------------------------------*/
     var equalTo = function(el){
       var equalToParentId = $(el).attr('data-equal-to');
-      
-      if($('#' + equalToParentId).length) {
+      if($('#' + equalToParentId).length >= 0) {
         // Compare to another input's value
         if (el.value != $('#' + equalToParentId).val() || el.value === '') {
           return false;
@@ -40,6 +39,7 @@
         }
       } else {
         // Plain Object / Primitive evaluation
+        console.log('No data-equal-to element defined.');
         return (el.value == equalToParentId);
       }
     };
@@ -83,17 +83,6 @@
     };
 
     /*----------------------------------------------
-    removeValid($el)
-    function that removes all valid classes from 
-    blank fields
-    ----------------------------------------------*/
-    var removeValid = function($el) {
-      $el.removeClass('valid');
-      $formGroup = $el.parents('.form-group');
-      $formGroup.removeClass('has-success');
-    };
-
-    /*----------------------------------------------
     setInvalid($el)
     function that addes invalid classes and appends
     error message labels to the parent div. 
@@ -126,17 +115,14 @@
       elValidity = el.checkValidity();
       $el = $(el);
 
-      console.log('elValidity: ' + elValidity);
-
       //if it is an equal-to check status
-      if($(el).hasClass('fn-equal-to')){
+      if($(el).attr('data-equal-to') != undefined){
         elValidity = equalTo(el);
       }
-      
-      //if it is a not equal-to check status
-      if($(el).hasClass('fn-notequal-to')){
+
+     /* if($(el).attr('data-not-equal-to') != undefined){
         elValidity = !equalTo(el);
-      }
+      }*/
 
       if($el.is(':checkbox') || $el.is(':radio')){
         elValidity = checkboxValidity(el);
@@ -182,10 +168,6 @@
         if($(this).val() !== '') {
           validityChecker(this);
         }
-        else {
-          //if blank remove valid classes. 
-          removeValid($(this));
-        }
       }); 
 
     //Check Validity for all elements on submit
@@ -199,7 +181,7 @@
            //unsucessfull validation
           var errorScrollTop = $form.find('.has-error:first').offset().top - 100;
           if(errorScrollTop < $(window).scrollTop()) {
-            $("html").animate({ scrollTop: errorScrollTop }, 300);
+            $("html, body").animate({ scrollTop: errorScrollTop }, 300);
           }
           $form.find('.has-error .invalid:first').focus();
          
