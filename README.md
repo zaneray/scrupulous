@@ -55,8 +55,9 @@ There are additional validation methods that come in handy that can be controlle
 </dl>
 
 ###Example
-Example showing valid and invalid callbacks.
- <div class="form-group">
+The data-equal-to attribute value is the id of the first password field. 
+
+  <div class="form-group">
     <label for="inputpw">Password</label>
     <input type="password" pattern=".{6,}" class="form-control" id="inputpw" title="Passwords are at Least 6 Characters" placeholder="Minimum 6 Characters" required>
   </div>
