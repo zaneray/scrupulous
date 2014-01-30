@@ -46,6 +46,27 @@ When the form validates the following HTML is generated dynamically
 		<input type="text" class="form-control valid" id="name" name="name" title="Please Enter a Name" required>
 	</div>
 
+#Additional Validation Methods
+There are additional validation methods that come in handy that can be controlled by data attributes. 
+
+<dl>
+<dt><b>data-equal-to:</b></dt>
+<dd>ID of an element to check whether the values of the two elements are equal. Example is password fields where you want to make sure that both passwords match. </dd>
+</dl>
+
+###Example
+Example showing valid and invalid callbacks.
+<pre><code>
+ <div class="form-group">
+    <label for="inputpw">Password</label>
+    <input type="password" pattern=".{6,}" class="form-control" id="inputpw" title="Passwords are at Least 6 Characters" placeholder="Minimum 6 Characters" required>
+  </div>
+  <div class="form-group">
+    <label for="inputpwrepeat">Repeat Password</label>
+    <input type="password" pattern=".{6,}" class="form-control" data-equal-to="inputpw" id="inputpwrepeat" title="Passwords Must Match" required>
+  </div>
+</code></pre>
+
 #Optional Properties
 More porperties to be added as new features are needed. 
 
@@ -56,7 +77,7 @@ More porperties to be added as new features are needed.
 <dd>Callback if the form is invalid. Always prevents form submission. Helpful if you need added functionality such as showing a global message above the form.</dd>
 </dl>
 
-##Example
+###Example
 Example showing valid and invalid callbacks.
 <pre><code>
   $('.callback-form').scrupulous({
