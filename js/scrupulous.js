@@ -4,6 +4,11 @@
     if(typeof document.createElement( 'input' ).checkValidity != 'function') {
       return false;
     }
+    //prevent calling scrupulous again.
+    if(this.hasClass('scrupulous')) {
+      return false;
+      
+    }
 
     //future homes for options as needed
     var options = {
@@ -18,6 +23,7 @@
         emailPattern  = "[^@]+@[^@]+\.[a-zA-Z]{2,6}",
         $el,$form,$formGroup,elId,validity,errorMessage;
 
+    $forms.addClass('scrupulous');
     $forms.find('input[type="email"]').attr('pattern',emailPattern);
 
     $forms.attr('novalidate',true); //set all forms to novalidate to avoid default browser validation
@@ -116,13 +122,14 @@
       $el = $(el);
 
       //if it is an equal-to check status
+
       if($(el).attr('data-equal-to') != undefined){
         elValidity = equalTo(el);
       }
 
-     /* if($(el).attr('data-not-equal-to') != undefined){
+      if($(el).attr('data-not-equal-to') != undefined){
         elValidity = !equalTo(el);
-      }*/
+      }
 
       if($el.is(':checkbox') || $el.is(':radio')){
         elValidity = checkboxValidity(el);
