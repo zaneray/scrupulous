@@ -1,6 +1,6 @@
 {
   "name": "scrupulous",
-  "version": "0.0.1",
+  "version": "v0.1",
   "main": "js/scrupulous.js",
   "ignore": [
     "css",
