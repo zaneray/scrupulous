@@ -1,6 +1,7 @@
 {
   "name": "scrupulous",
   "version": "v1.0.0",
+  "main": "js/scrupulous.js",
   "dependencies": {
       "jquery": ">=10.0.2"
   }
