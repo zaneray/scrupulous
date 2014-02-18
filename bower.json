@@ -5,7 +5,6 @@
   "ignore": [
     "css",
     "images",
-    "bower.json",
     "index.html"
   ],
   "dependencies": {
