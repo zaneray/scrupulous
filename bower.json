@@ -1,4 +1,14 @@
 {
   "name": "scrupulous",
-  "version": "v1.0.0"
+  "version": "v1.0.0",
+  "dependencies": {
+      "jquery": ">=10.0.2"
+  }
+  "ignore": [
+    "css",
+    "images",
+    "bower.json",
+    "index.html",
+    "js/vendor"
+  ]
 }
