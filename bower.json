@@ -4,7 +4,7 @@
   "main": "js/scrupulous.js",
   "dependencies": {
       "jquery": ">=10.0.2"
-  }
+  },
   "ignore": [
     "css",
     "images",
