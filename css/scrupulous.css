@@ -58,3 +58,7 @@
   left: 1em;
   right: auto;
 }
+
+.form-control.valid {
+  position: relative;
+}
