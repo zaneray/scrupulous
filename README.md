@@ -74,6 +74,12 @@ More porperties to be added as new features are needed.
 <dd>A Callback if the form is valid. <b>Must return <i>true</i> or <i>false</i></b>. Helpful if you are relying on another service to validate the form after the scrupulous script has determined the form. Examples: Credit Card Validation, Address Verification, Username Verification.</dd>
 <dt><b>invalid:</b></dt>
 <dd>Callback if the form is invalid. Always prevents form submission. Helpful if you need added functionality such as showing a global message above the form.</dd>
+<dt><b>errorClassName:</b></dt>
+<dd>Default: 'error-message'. Customize the class name of error messages, useful when integrating into an existing project that does not use boostrap.</dd>
+<dt><b>parentClassName:</b></dt>
+<dd>Default: 'form-group'. Customize the class name of the parent container of the form element, useful when integrating into an existing project that does not use boostrap.</dd>
+<dt><b>defaultErrorMessage:</b></dt>
+<dd>Default: 'This field has an error'. Message display in the error label if no title tag is provided on the input element with an error/</dd>
 </dl>
 
 ###Example

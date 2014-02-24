@@ -10,11 +10,15 @@
       
     }
 
+
     //future homes for options as needed
     var options = {
-      valid: null,  //Pass a valid function through args
-      invalid: null //Pass an invalid function through args
-    }
+      valid:                 null,  //Pass a valid function through args
+      invalid:               null, //Pass an invalid function through args
+      errorClassName:        'error-message', //class name of the error label
+      parentClassName:       'form-group', //class name of the parent element where the error label is appended
+      defaultErrorMessage:   'This field has an error' //default error message if no title is provided
+    };
 
     $.extend( options, args );
 
@@ -52,8 +56,9 @@
 
     /*----------------------------------------------
       checkboxValidity(el)
-      function to check if any checkboxes/radios are checked then validate that
-      section of the form 
+      function to check if any checkboxes/radios 
+      are checked then validate that section of 
+      the form 
     ----------------------------------------------*/
 
     var checkboxValidity = function(el){
@@ -74,46 +79,47 @@
     };
 
     /*----------------------------------------------
-    setValid($el)
-    function that removes all invalid classes and 
-    error labels. 
+      setValid($el)
+      function that removes all invalid classes and 
+      error labels. 
     ----------------------------------------------*/
 
     var setValid = function($el) {
       $el.addClass('valid');
       $el.removeClass('invalid');
-      $formGroup = $el.parents('.form-group');
+      $formGroup = $el.parents('.' + options.parentClassName);
       $formGroup.addClass('has-success');
       $formGroup.removeClass('has-error');
-      $formGroup.find('.error-message').remove();
+      $formGroup.find('.' + options.errorClassName).remove();
     };
 
     /*----------------------------------------------
-    setInvalid($el)
-    function that addes invalid classes and appends
-    error message labels to the parent div. 
+      setInvalid($el)
+      function that addes invalid classes and appends
+      error message labels to the parent div. 
     ----------------------------------------------*/
     var setInvalid = function($el) {
       $el.addClass('invalid');
       $el.removeClass('valid');
-      $formGroup =  $el.parents('.form-group');
+      $formGroup =  $el.parents('.' + options.parentClassName);
       //let Developer know that form-group does not exist
       if($formGroup.length == 0) {
-        console.log('Warning: Scrupulous needs a .form-group element to append errors.');
+        console.log('Warning: Scrupulous needs a .form-group or parentClassName element to append errors.');
+        return false;
       }
       $formGroup.addClass('has-error');
       $formGroup.removeClass('has-success');
       errorMessage = $el.attr('title');
       if(errorMessage == undefined) {
-        errorMessage = 'This field has an error';
+        errorMessage = options.defaultErrorMessage;
       }
       //only append if there isn't one. helpful with radios and checkboxes
-      if($formGroup.find('.error-message').length === 0) {
-        $formGroup.append('<label class="error-message inactive" for="' + $el.attr('id') + '">' + errorMessage + '</label>');
+      if($formGroup.find('.' + options.errorClassName).length === 0) {
+        $formGroup.append('<label class="' + options.errorClassName + ' inactive" for="' + $el.attr('id') + '">' + errorMessage + '</label>');
        
       }
       var t = setTimeout(function(){
-        $('.error-message').removeClass('inactive');
+        $('.' + options.errorClassName).removeClass('inactive');
       },10);
     };
 
@@ -122,7 +128,6 @@
       $el = $(el);
 
       //if it is an equal-to check status
-
       if($(el).attr('data-equal-to') != undefined){
         elValidity = equalTo(el);
       }
@@ -211,6 +216,7 @@
             return true;
           }
         }
+        return false;
       });
   };
 })( jQuery );
