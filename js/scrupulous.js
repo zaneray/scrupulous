@@ -64,7 +64,7 @@
     var checkboxValidity = function(el){
       var inputName = el.name,
           isChecked = false;
-      $('input[name=' + inputName + ']').each(function(){
+      $('input[name="' + inputName + '"]').each(function(){
         if(this.checked === true){
           isChecked = true;
         }
