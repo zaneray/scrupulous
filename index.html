@@ -40,6 +40,17 @@
                   <input type="text" class="form-control" id="undefined-field" name="undefined-field" required>
                 </div>
                 <div class="form-group">
+                  <label for="wrapping">Fields with Wrapping text, Fields with Wrapping text, Fields with Wrapping text</label>
+                  <input type="text" class="form-control" id="wrapping" name="wrapping" required title="This error should wrap, this error should wrap, This error should wrap, this error should wrap">
+                </div>
+                <div class="form-group">
+                  <label for="disabled">Disabled Field</label>
+                  <input type="text" class="form-control" id="disabled-input" name="disabled-input" disabled="true" required title="This field was disabled">
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" id="toggle-disabled" name="toggle-disabled" value="true">Enable this field</label>
+                </div>
+                <div class="form-group">
                   <label for="state">State</label>
                   <select id="state" name="state" class="form-control" title="Please select a state" required>
                     <option value="">Choose One</option>
@@ -192,6 +203,16 @@
               return false;
             }
           });
+
+          $('#toggle-disabled').on('change',function(){
+            if($(this).is(':checked')){
+              $('#disabled-input').removeAttr('disabled');
+            }
+            else {
+              $('#disabled-input').attr('disabled',true);
+            }
+          });
+
         });
       </script>
 
