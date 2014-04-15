@@ -23,7 +23,7 @@
     $.extend( options, args );
 
     var $forms        = this,
-        $inputs       = $forms.find('select, input, textarea').not(':disabled'),
+        $inputs       = $forms.find('select, input, textarea'),
         emailPattern  = "[^@]+@[^@]+\.[a-zA-Z]{2,6}",
         $el,$form,$formGroup,elId,validity,errorMessage;
 
@@ -150,9 +150,15 @@
     };
 
     //Check for has-success Validity on change/keyup
-      $inputs.on('change keyup',function(){
+      $inputs.on('change keyup mouseup',function(){
+    
+
         elValidity = this.checkValidity();
         $el = $(this);
+
+        if($el.is(':disabled') === true) {
+          return false; //kill it if it is disabled
+        }
 
         if($el.hasClass('fn-equal-to')){
           elValidity = equalTo(this);
@@ -186,7 +192,7 @@
       $forms.on('submit',function(e){
         $form = $(this);
 
-        $form.find('select, input, textarea').each(function(){
+        $form.find('select, input, textarea').not(':disabled').each(function(){
           validityChecker(this);
         });
         if($form.find('.has-error').length > 0){
