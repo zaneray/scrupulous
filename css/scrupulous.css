@@ -23,17 +23,17 @@
   position: absolute;
   font-weight: normal;
   font-size: .9em;
-  bottom: -2.3em;
+  top: 100%;
   right: 0;
   left: auto;
   padding: .5em;
-  line-height: 1em;
+  line-height: 1.2em;
   text-align: right;
   z-index: 10;
   cursor: pointer;
   box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
   color: white;
-  margin: 0;
+  margin: .25em 0 0 0;
 }
 .error-message:before {
   position: absolute;
