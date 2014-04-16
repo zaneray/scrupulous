@@ -179,7 +179,7 @@
 
     //Check Validity on Blur
       $inputs.on('blur',function(){
-        if($(this).attr('type') === 'number' && $(this).val() == ''){ 
+        if($(this).attr('type') === 'number' && isNaN($(this).val())){ 
           //exist because letters in a number field register as a blank value
           $(this).val('');
         }
@@ -196,7 +196,7 @@
           validityChecker(this);
         });
         if($form.find('.has-error').length > 0){
-           //unsucessfull validation
+           //unsuccessful validation
           var errorScrollTop = $form.find('.has-error:first').offset().top - 100;
           if(errorScrollTop < $(window).scrollTop()) {
             $("html, body").animate({ scrollTop: errorScrollTop }, 300);
