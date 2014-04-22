@@ -22,8 +22,8 @@ Then just add standard HTML5 attributes to your form and Scrupulous takes care o
 		<div class="form-group">
 			<label for="email">Email</label>
 			<input type="email" class="form-control" id="email" name="email" title="Please Enter a Valid Email Address" required>
-    </div>
-  </form>
+        </div>
+    </form>
 
 Note that the title of the field becomes the error message, mimmicking the default browser HTML5 validation messaging.
 
@@ -67,23 +67,25 @@ The data-equal-to attribute value is the id of the first password field.
   </div>
 
 #Optional Properties
-More porperties to be added as new features are needed. 
+More properties to be added as new features are needed. 
 
 <dl>
 <dt><b>valid:</b></dt>
 <dd>A Callback if the form is valid. <b>Must return <i>true</i> or <i>false</i></b>. Helpful if you are relying on another service to validate the form after the scrupulous script has determined the form. Examples: Credit Card Validation, Address Verification, Username Verification.</dd>
 <dt><b>invalid:</b></dt>
 <dd>Callback if the form is invalid. Always prevents form submission. Helpful if you need added functionality such as showing a global message above the form.</dd>
+<dt><b>setErrorMessage:</b></dt>
+<dd>Helper function used to set up custom error messaging.  Helpful for cases where special messaging is needed for specific error modes.</dd>
 <dt><b>errorClassName:</b></dt>
-<dd>Default: 'error-message'. Customize the class name of error messages, useful when integrating into an existing project that does not use boostrap.</dd>
+<dd>Default: 'error-message'. Customize the class name of error messages, useful when integrating into an existing project that does not use Bootstrap.</dd>
 <dt><b>parentClassName:</b></dt>
-<dd>Default: 'form-group'. Customize the class name of the parent container of the form element, useful when integrating into an existing project that does not use boostrap.</dd>
+<dd>Default: 'form-group'. Customize the class name of the parent container of the form element, useful when integrating into an existing project that does not use Bootstrap.</dd>
 <dt><b>defaultErrorMessage:</b></dt>
-<dd>Default: 'This field has an error'. Message display in the error label if no title tag is provided on the input element with an error/</dd>
+<dd>Default: 'This field has an error'. Message display in the error label if no title tag is provided on the input element with an error.</dd>
 </dl>
 
 ###Example
-Example showing valid and invalid callbacks.
+Example showing valid and invalid callbacks and setErrorMessage helper function
 <pre><code>
   $('.callback-form').scrupulous({
     valid: function(){
@@ -93,6 +95,29 @@ Example showing valid and invalid callbacks.
     invalid: function(){
       alert('Invalid Callback -  Stop the Form');
       return false;
+    },
+    setErrorMessage: function(el){
+      
+      /** example to put custom message on inputs with type='number' **/
+      var input = $(el);
+      var message = null;
+      var tag = el.tagName.toLowerCase();
+      var type = ( tag == "input" ) ? input.attr("type").toLowerCase() : ( tag == "select" ) ? "select" : "unknown";
+      
+      /** use different messages if input value is too large vs too small **/
+      if ( type == "number" ) {
+        if (typeof input.attr("max") !== 'undefined' && input.attr("max") &lt; input.val()) {
+          message = "Please enter " + input.attr("max") + " or less";
+        }
+        else if (typeof input.attr("min") !== 'undefined' && input.attr("min") &gt; input.val()) {
+          message = "Please enter " + input.attr("min") + " or more";
+        }
+      }
+      
+      /** use setCustomValidity method built into browser to update the message **/
+      if ( message !== null ){
+        el.setCustomValidity(message);
+      }
     }
   });
 </code></pre>
