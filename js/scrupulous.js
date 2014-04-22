@@ -7,9 +7,7 @@
     //prevent calling scrupulous again.
     if(this.hasClass('scrupulous')) {
       return false;
-      
     }
-
 
     //future homes for options as needed
     var options = {
@@ -17,7 +15,8 @@
       invalid:               null, //Pass an invalid function through args
       errorClassName:        'error-message', //class name of the error label
       parentClassName:       'form-group', //class name of the parent element where the error label is appended
-      defaultErrorMessage:   'This field has an error' //default error message if no title is provided
+      defaultErrorMessage:   'This field has an error', //default error message if no title is provided
+      setErrorMessage:       null  // used to set custom HTML5 validationMessage
     };
 
     $.extend( options, args );
@@ -31,7 +30,6 @@
     $forms.find('input[type="email"]').attr('pattern',emailPattern);
 
     $forms.attr('novalidate',true); //set all forms to novalidate to avoid default browser validation
-
 
     /*----------------------------------------------
       equalTo(el);
@@ -49,7 +47,9 @@
         }
       } else {
         // Plain Object / Primitive evaluation
-        console.log('No data-equal-to element defined.');
+        if (window.console){
+          console.log('No data-equal-to element defined.');
+        }
         return (el.value == equalToParentId);
       }
     };
@@ -104,12 +104,24 @@
       $formGroup =  $el.parents('.' + options.parentClassName);
       //let Developer know that form-group does not exist
       if($formGroup.length == 0) {
-        console.log('Warning: Scrupulous needs a .form-group or parentClassName element to append errors.');
+        if(window.console){
+          console.log('Warning: Scrupulous needs a .form-group or parentClassName element to append errors.');  
+        }
         return false;
       }
       $formGroup.addClass('has-error');
       $formGroup.removeClass('has-success');
-      errorMessage = $el.attr('title');
+      
+      if(options.setErrorMessage != null){
+        options.setErrorMessage.apply(this, $el);
+      }
+      
+      errorMessage = $el[0].validationMessage;
+      
+      if (typeof errorMessage === 'undefined' || errorMessage.length == 0){
+        errorMessage = $el.attr('title');  
+      }
+      
       if(errorMessage == undefined) {
         errorMessage = options.defaultErrorMessage;
       }
@@ -140,7 +152,6 @@
         elValidity = checkboxValidity(el);
       }
 
-
       if(elValidity === true){
         setValid($el);
       }
@@ -151,7 +162,6 @@
 
     //Check for has-success Validity on change/keyup
       $inputs.on('change keyup mouseup',function(){
-    
 
         elValidity = this.checkValidity();
         $el = $(this);
