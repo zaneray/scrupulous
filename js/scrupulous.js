@@ -79,15 +79,30 @@
     };
 
     /*----------------------------------------------
-      setValid($el)
+      setValid($el, skipMultiInputCheck)
       function that removes all invalid classes and 
-      error labels. 
+      error labels. the invalid classes and error
+	    labels are only removed if the form group
+	    to be updated doesn't still have errors.
     ----------------------------------------------*/
-
-    var setValid = function($el) {
+    var setValid = function($el, skipMultiInputCheck) {
+      if(skipMultiInputCheck === undefined) {
+        skipMultiInputCheck = false;
+      }
       $el.addClass('valid');
       $el.removeClass('invalid');
       $formGroup = $el.parents('.' + options.parentClassName);
+      
+      if($(':input', $formGroup).length > 1 && skipMultiInputCheck === false) {
+        /*
+         * If we have multiple inputs in this group, and have had an error state previously, then we don't want to reset 
+         * the form-group unless we know all inputs are valid, since the class on the form group partially controls
+		     * displaying of input errors.
+         */
+        if($formGroup.hasClass('has-error') && ($(':input.valid', $formGroup).length !== $(':input', $formGroup).length)) {
+          return;
+        }
+      }
       $formGroup.addClass('has-success');
       $formGroup.removeClass('has-error');
       $formGroup.find('.' + options.errorClassName).remove();
