@@ -61,4 +61,5 @@
 
 .form-control.valid {
   position: relative;
+  border: 1px solid #CCCCCC;
 }
