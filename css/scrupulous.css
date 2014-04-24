@@ -1,9 +1,9 @@
-.form-group {
+.form-group, .input-group {
   position: relative;
   box-sizing: border-box;
 }
 
-.form-group * {
+.form-group *, .input-group * {
   box-sizing: border-box;
 }
 
@@ -18,7 +18,7 @@
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 78, 0, 0.3);
 }
 
-.form-group .error-message {
+.form-group .error-message, .input-group .error-message {
   background: #ff4e00;
   position: absolute;
   font-weight: normal;
@@ -35,6 +35,17 @@
   color: white;
   margin: .25em 0 0 0;
 }
+
+.form-group .error-message {
+  right: 0;
+  left: auto;
+}
+
+.input-group .error-message {
+  left: 0;
+  right: auto;
+}
+
 .error-message:before {
   position: absolute;
   top: -1.2em;
@@ -44,6 +55,12 @@
   border-right: .7em transparent solid;
   border-left: .7em transparent solid;
   border-bottom: .7em #ff4e00 solid;
+}
+
+
+.input-group .error-message:before {
+  right: auto;
+  left: 1em;
 }
 
 .radio .error-message, .checkbox .error-message {
