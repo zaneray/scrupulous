@@ -104,19 +104,22 @@
       $formGroup =  $el.parents('.' + options.parentClassName);
       //let Developer know that form-group does not exist
       if($formGroup.length == 0) {
-        if(window.console){
-          console.log('Warning: Scrupulous needs a .form-group or parentClassName element to append errors.');  
+        //no form group, check and see if we have an input group
+        $formGroup =  $el.parents('.input-group');
+        if($formGroup.length == 0) {
+          if(window.console){
+            console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors.');  
+          }
+          return false;
         }
-        return false;
       }
       $formGroup.addClass('has-error');
       $formGroup.removeClass('has-success');
       
       if(options.setErrorMessage != null){
         options.setErrorMessage.apply(this, $el);
+        errorMessage = $el[0].validationMessage;
       }
-      
-      errorMessage = $el[0].validationMessage;
       
       if (typeof errorMessage === 'undefined' || errorMessage.length == 0){
         errorMessage = $el.attr('title');  
