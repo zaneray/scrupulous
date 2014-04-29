@@ -150,8 +150,9 @@
       
       if(options.setErrorMessage != null){
         options.setErrorMessage.apply(this, $el);
-        errorMessage = $el[0].validationMessage;
       }
+      
+      errorMessage = $el[0].validationMessage;
       
       if (typeof errorMessage === 'undefined' || errorMessage.length == 0 || errorMessage == originalValidationMessage){
         errorMessage = $el.attr('title');  
