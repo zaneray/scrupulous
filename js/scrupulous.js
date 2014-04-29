@@ -24,6 +24,7 @@
     var $forms        = this,
         $inputs       = $forms.find('select, input, textarea'),
         emailPattern  = "[^@]+@[^@]+\.[a-zA-Z]{2,6}",
+        browser       = {},
         $el,$form,$formGroup,elId,validity,errorMessage;
 
     $forms.addClass('scrupulous');
@@ -78,6 +79,35 @@
       }
     };
 
+    /** for browsers that don't support input type = number **/
+    var numberTypeValidity = function($el){
+      var min,max,step,val=Number($el.val());
+      if (typeof $el.attr("max") !== 'undefined') {
+        max = Number($el.attr("max"));
+        if ( max < val ){
+          return false;
+        }
+      }
+      if (typeof $el.attr("min") !== 'undefined') {
+        min = Number($el.attr("min"));
+        if ( min > val ){
+          return false;
+        }
+      }
+      if ( typeof $el.attr("step") !== 'undefined' ){
+        step = Number($el.attr("step"));
+        if ( val % step != 0 ){
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    var isNumberField = function($el){
+      return $el.is("input") && $el.attr("type") !== 'undefined' && $el.attr("type").toLowerCase() == "number";
+    };
+
     /*----------------------------------------------
       setValid($el)
       function that removes all invalid classes and 
@@ -116,12 +146,14 @@
       $formGroup.addClass('has-error');
       $formGroup.removeClass('has-success');
       
+      var originalValidationMessage = $el[0].validationMessage;
+      
       if(options.setErrorMessage != null){
         options.setErrorMessage.apply(this, $el);
         errorMessage = $el[0].validationMessage;
       }
       
-      if (typeof errorMessage === 'undefined' || errorMessage.length == 0){
+      if (typeof errorMessage === 'undefined' || errorMessage.length == 0 || errorMessage == originalValidationMessage){
         errorMessage = $el.attr('title');  
       }
       
@@ -155,6 +187,11 @@
         elValidity = checkboxValidity(el);
       }
 
+      if ( ! browser.inputtype.number && isNumberField($(el)) ){
+        /** browser doesn't support number type **/
+        elValidity = numberTypeValidity($el);
+      }
+
       if(elValidity === true){
         setValid($el);
       }
@@ -162,6 +199,28 @@
         setInvalid($el);
       }
     };
+    
+    /**
+     * Load browser support for HTML5 elements.
+     */
+    var loadInputTypeSupport = function(){
+      var types = "search,number,range,color,tel,url,email,date,month,week,time,datetime,datetime-local";
+      var typeArray = types.split(",");
+      var input = document.createElement( 'input' );
+      browser.inputtype = {};
+      for ( var a = 0; a < typeArray.length; a++ ){
+        input.setAttribute("type","text");
+        input.setAttribute("type",typeArray[a]);
+        if ( input.type !== 'text' ){
+          browser.inputtype[typeArray[a]] = true;
+        }
+        else {
+          browser.inputtype[typeArray[a]] = false;
+        }
+      }
+    };
+
+    loadInputTypeSupport();
 
     //Check for has-success Validity on change/keyup
       $inputs.on('change keyup mouseup',function(){
@@ -196,9 +255,9 @@
           //exist because letters in a number field register as a blank value
           $(this).val('');
         }
-        if($(this).val() !== '') {
+        //if($(this).val() !== '') {
           validityChecker(this);
-        }
+        //}
       }); 
 
     //Check Validity for all elements on submit
