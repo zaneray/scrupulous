@@ -41,10 +41,12 @@
   left: auto;
 }
 
-.input-group .error-message {
+.input-group .error-message, .checkbox + .error-message, .radio + .error-message {
   left: 0;
   right: auto;
 }
+
+
 
 .error-message:before {
   position: absolute;
@@ -58,23 +60,11 @@
 }
 
 
-.input-group .error-message:before {
+.input-group .error-message:before, .checkbox + .error-message:before, .radio + .error-message:before {
   right: auto;
   left: 1em;
 }
 
-.radio .error-message, .checkbox .error-message {
-  left: 0;
-  right: auto;
-  text-align: left;
-  margin: 0;
-  bottom: -2.5em;
-}
-
-.radio .error-message:before, .checkbox .error-message:before {
-  left: 1em;
-  right: auto;
-}
 
 .form-control.valid {
   position: relative;
