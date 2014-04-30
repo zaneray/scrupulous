@@ -82,6 +82,11 @@
     /** for browsers that don't support input type = number **/
     var numberTypeValidity = function($el){
       var min,max,step,val=Number($el.val());
+
+      if(!$.isNumeric( $el.val())){
+        return false;
+      }
+
       if (typeof $el.attr("max") !== 'undefined') {
         max = Number($el.attr("max"));
         if ( max < val ){
@@ -100,7 +105,6 @@
           return false;
         }
       }
-
       return true;
     };
 
@@ -252,20 +256,32 @@
 
     //Check Validity on Blur
       $inputs.on('blur',function(){
-        if($(this).attr('type') === 'number' && isNaN($(this).val())){ 
+        var $this = $(this);
+        if($this.attr('type') === 'number' && isNaN($this.val())){ 
           //exist because letters in a number field register as a blank value
-          $(this).val('');
+          $this.val('');
         }
-        //if($(this).val() !== '') {
+        if($this.val() !== '') {
           validityChecker(this);
-        //}
+        }
+        else {
+          //if the form is blank AND required we need to rip out the valid classes
+          if($this.is(':required')) {
+            $this.removeClass('valid').parentsUntil('form-group').removeClass('has-success');
+          }
+
+        }
+
+
+
       }); 
 
-    //Check Validity for all elements on submit
+      //Check Validity for all elements on submit
       $forms.on('submit',function(e){
         $form = $(this);
 
         $form.find('select, input, textarea').not(':disabled').each(function(){
+
           validityChecker(this);
         });
         if($form.find('.has-error').length > 0){
