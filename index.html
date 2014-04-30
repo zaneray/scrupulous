@@ -31,10 +31,7 @@
                   <label for="email">Email</label>
                   <input type="email" class="form-control" id="email" name="email" title="Please Enter a Valid Email Address" required>
                 </div>
-                <div class="form-group">
-                  <label for="age">Age</label>
-                  <input type="number" class="form-control" id="age" name="age" title="Your Age can only be a number" required>
-                </div>
+                
                 <div class="form-group">
                   <label for="undefined-field">Undefined Title Field</label>
                   <input type="text" class="form-control" id="undefined-field" name="undefined-field" required>
@@ -111,8 +108,25 @@
                   <label for="textarea">Textarea</label>
                   <textarea class="form-control" id="textarea" name="textarea" title="This field is required" required></textarea>
                 </div>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+              </fieldset>
+            </form>
+            <form class="validate-form" action="#" method="get">
+              <fieldset>
+                <h3>Number Input Validation</h3>
+                <div class="form-group">
+                  <label for="age">Enter Your Age</label>
+                  <input type="number" class="form-control" id="age" name="age" title="Your Age can only be a number" required>
+                </div>
+                <div class="form-group">
+                  <label for="age">Enter a Number from 20-30</label>
+                  <input type="number" class="form-control" id="numberminmax" name="numberminmax" min="20" max="30" title="Enter a Valid Number" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                 
               </fieldset>
+            </form>
+            <form class="validate-form" action="#" method="get">
               <fieldset>
                 <h3>Fields that Must Match</h3>
                 <div class="form-group">
@@ -123,20 +137,38 @@
                   <label for="inputpwrepeat">Repeat Password</label>
                   <input type="password" pattern=".{6,}" class="form-control" data-equal-to="inputpw" id="inputpwrepeat" title="Passwords Must Match" required>
                 </div>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
               </fieldset>
+            </form>
+            <form class="validate-form" action="#" method="get">
               <fieldset>
                 <h3>Radio Buttons &amp; Checkboxes</h3>
-                <div class="form-group checkbox">
+                <div class="form-group">
                   <h4>Select a Checkbox</h4>
-                    <ul>
-                      <li><label><input type="checkbox" value="value1" required="" name="inputcheckbox" title="Please Select an Option 1" class="valid"> Check me out</label></li>
-                      <li><label><input type="checkbox" value="value2" required="" name="inputcheckbox" title="Please Select an Option 2"> Check me out</label></li>
-                      <li><label><input type="checkbox" value="value3" required="" name="inputcheckbox" title="Please Select an Option 3"> Check me out</label></li>
-                    </ul>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="value1" required="" name="inputcheckbox" title="Please Select an Option 1"> Check me out</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="value2" required="" name="inputcheckbox" title="Please Select an Option 2"> Check me out</label>
+                  </div>
+                  <div class="checkbox">  
+                    <label><input type="checkbox" value="value3" required="" name="inputcheckbox" title="Please Select an Option 3"> Check me out</label>
+                  </div>
                 </div>
-                 <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                <div class="form-group">
+                  <h4>Select a Radio</h4>
+                  <div class="radio">
+                    <label><input type="radio" value="value1" required="" name="inputradio" title="Please Select an Option 1"> Check me out</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type="radio" value="value2" required="" name="inputradio" title="Please Select an Option 2"> Check me out</label>
+                  </div>
+                  <div class="radio">  
+                    <label><input type="radio" value="value3" required="" name="inputradio" title="Please Select an Option 3"> Check me out</label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
               </fieldset>
-             
             </form>
           </div>
         <div class="col-xs-12 center">
@@ -174,7 +206,22 @@
               </div>
               
             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-            </form>
+          </form>
+          <!-- <form id="custom-message-form" action="#" method="get">
+            <fieldset>
+              <h3>Validation with Custom Error Messaging</h3>
+              
+              <div class="form-group">
+                <label for="age">Enter a Number from 20-30</label>
+                <input type="number" class="form-control" id="customnumber" name="customnumber" min="20" max="30" title="Enter a Valid Number" required>
+              </div>
+              <div class="form-group">
+                <label for="age">This has a custom message</label>
+                <input type="text" class="form-control" id="customtext" name="customtext"  title="Title Message" required>
+              </div>
+              
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+          </form> -->
         </div>
 
         <div class="col-xs-12 center">
