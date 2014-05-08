@@ -1,13 +1,5 @@
 (function ($) {
   $.fn.scrupulous = function (args) {
-    //stop everything if checkValidity does not exist, and I'm talking to you <= IE9.
-    if(typeof document.createElement( 'input' ).checkValidity != 'function') {
-      return false;
-    }
-    //prevent calling scrupulous again.
-    if(this.hasClass('scrupulous')) {
-      return false;
-    }
 
     //future homes for options as needed
     var options = {
@@ -26,6 +18,33 @@
         emailPattern  = "[^@]+@[^@]+\.[a-zA-Z]{2,6}",
         browser       = {},
         $el,$form,$formGroup,elId,validity,errorMessage;
+
+
+    //stop everything if checkValidity does not exist, and I'm talking to you <= IE9.
+    if(typeof document.createElement( 'input' ).checkValidity != 'function') {
+      $forms.on('submit',function(e){
+        if(options.valid !== null) {
+          //e.preventDefault();
+          return options.valid.call(this);
+        } 
+        else {
+          return true;
+        }
+
+      });
+      return false;
+      //stop everything else
+    }
+
+    //prevent calling scrupulous again.
+    if(this.hasClass('scrupulous')) {
+      return false;
+    }
+
+
+
+   
+   
 
     $forms.addClass('scrupulous');
     $forms.find('input[type="email"]').attr('pattern',emailPattern);
@@ -101,7 +120,7 @@
       }
       if ( typeof $el.attr("step") !== 'undefined' ){
         step = Number($el.attr("step"));
-        if ( val % step != 0 ){
+        if ( val % step !== 0 ){
           return false;
         }
       }
@@ -137,10 +156,10 @@
       $el.removeClass('valid');
       $formGroup =  $el.parents('.' + options.parentClassName);
       //let Developer know that form-group does not exist
-      if($formGroup.length == 0) {
+      if($formGroup.length === 0) {
         //no form group, check and see if we have an input group
         $formGroup =  $el.parents('.input-group');
-        if($formGroup.length == 0) {
+        if($formGroup.length === 0) {
           if(window.console){
             console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors.');  
           }
@@ -152,17 +171,17 @@
       
       var originalValidationMessage = $el[0].validationMessage;
       
-      if(options.setErrorMessage != null){
+      if(options.setErrorMessage !== null){
         options.setErrorMessage.apply(this, $el);
       }
       
       errorMessage = $el[0].validationMessage;
       
-      if (typeof errorMessage === 'undefined' || errorMessage.length == 0 || errorMessage == originalValidationMessage){
+      if (typeof errorMessage === 'undefined' || errorMessage.length === 0 || errorMessage === originalValidationMessage){
         errorMessage = $el.attr('title');  
       }
       
-      if(errorMessage == undefined) {
+      if(errorMessage === undefined) {
         errorMessage = options.defaultErrorMessage;
       }
       //only append if there isn't one. helpful with radios and checkboxes
@@ -180,11 +199,11 @@
       $el = $(el);
 
       //if it is an equal-to check status
-      if($(el).attr('data-equal-to') != undefined){
+      if($(el).attr('data-equal-to') !== undefined){
         elValidity = equalTo(el);
       }
 
-      if($(el).attr('data-not-equal-to') != undefined){
+      if($(el).attr('data-not-equal-to') !== undefined){
         elValidity = !equalTo(el);
       }
 
@@ -293,7 +312,7 @@
           $form.find('.has-error .invalid:first').focus();
          
            //call the invalid callback, rely on that to return true or false to submit the form
-          if(options.invalid != null) {
+          if(options.invalid !== null) {
             return options.invalid.call(this);
           }
 
@@ -304,7 +323,7 @@
           //successful validation
           
           //call the invalid callback, rely on that to return true or false to submit the form
-          if(options.valid != null) {
+          if(options.valid !== null) {
             return options.valid.call(this);
           } 
           else {
