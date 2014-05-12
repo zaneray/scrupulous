@@ -276,6 +276,8 @@
     //Check Validity on Blur
       $inputs.on('blur',function(){
         var $this = $(this);
+        // trim the value and save back to form input before continuing.
+        $this.val($.trim($this.val()));
         if($this.attr('type') === 'number' && isNaN($this.val())){ 
           //exist because letters in a number field register as a blank value
           $this.val('');
