@@ -42,10 +42,6 @@
     }
 
 
-
-   
-   
-
     $forms.addClass('scrupulous');
     $forms.find('input[type="email"]').attr('pattern',emailPattern);
 
@@ -141,6 +137,17 @@
       $el.addClass('valid');
       $el.removeClass('invalid');
       $formGroup = $el.parents('.' + options.parentClassName);
+      //let Developer know that form-group does not exist
+      if($formGroup.length === 0) {
+        //no form group, check and see if we have an input group
+        $formGroup =  $el.parents('.input-group');
+        if($formGroup.length === 0) {
+          if(window.console){
+            console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors.');  
+          }
+          return false;
+        }
+      }
       $formGroup.addClass('has-success');
       $formGroup.removeClass('has-error');
       $formGroup.find('.' + options.errorClassName).remove();
