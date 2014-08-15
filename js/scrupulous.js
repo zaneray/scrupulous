@@ -191,6 +191,9 @@
       if(errorMessage === undefined) {
         errorMessage = options.defaultErrorMessage;
       }
+
+      $el[0].setCustomValidity("");
+
       //only append if there isn't one. helpful with radios and checkboxes
       if($formGroup.find('.' + options.errorClassName).length === 0) {
         $formGroup.append('<label class="' + options.errorClassName + ' inactive" for="' + $el.attr('id') + '">' + errorMessage + '</label>');
