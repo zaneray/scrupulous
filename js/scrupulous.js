@@ -3,6 +3,7 @@
 
     //future homes for options as needed
     var options = {
+      beforeSubmit:          null, // pre validation processing
       valid:                 null,  //Pass a valid function through args
       invalid:               null, //Pass an invalid function through args
       errorClassName:        'error-message', //class name of the error label
@@ -310,6 +311,10 @@
       //Check Validity for all elements on submit
       $forms.on('submit',function(e){
         $form = $(this);
+
+        if(typeof options.beforeSubmit === "function") {
+          options.beforeSubmit.call(this);
+        }
 
         $form.find('select, input, textarea').not(':disabled').each(function(){
 
