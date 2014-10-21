@@ -6,7 +6,6 @@
       "jquery": ">=1.10.2"
   },
   "ignore": [
-    "css",
     "images",
     "bower.json",
     "index.html",
