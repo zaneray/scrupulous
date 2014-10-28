@@ -135,23 +135,31 @@
     ----------------------------------------------*/
 
     var setValid = function($el) {
-      $el.addClass('valid');
-      $el.removeClass('invalid');
-      $formGroup = $el.parents('.' + options.parentClassName);
-      //let Developer know that form-group does not exist
-      if($formGroup.length === 0) {
-        //no form group, check and see if we have an input group
-        $formGroup =  $el.parents('.input-group');
+      //dont validate on hidden inputs
+      if(!$el.is(':hidden')) {
+        $el.addClass('valid');
+        $el.removeClass('invalid');
+        $formGroup = $el.parents('.' + options.parentClassName);
+        //let Developer know that form-group does not exist
         if($formGroup.length === 0) {
-          if(window.console){
-            console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors.');  
+          //no form group, check and see if we have an input group
+          $formGroup =  $el.parents('.input-group');
+          if($formGroup.length === 0) {
+            /*
+            Don't think we need this on valid anymore.
+            if(window.console){
+              console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors. id: ' + $el.attr('id'));  
+            }*/
+            return false;
           }
-          return false;
         }
+        $formGroup.addClass('has-success');
+        $formGroup.removeClass('has-error');
+        $formGroup.find('.' + options.errorClassName).remove();
       }
-      $formGroup.addClass('has-success');
-      $formGroup.removeClass('has-error');
-      $formGroup.find('.' + options.errorClassName).remove();
+      else {
+        console.log('its hidden1');
+      }
     };
 
     /*----------------------------------------------
@@ -160,49 +168,56 @@
       error message labels to the parent div. 
     ----------------------------------------------*/
     var setInvalid = function($el) {
-      $el.addClass('invalid');
-      $el.removeClass('valid');
-      $formGroup =  $el.parents('.' + options.parentClassName);
-      //let Developer know that form-group does not exist
-      if($formGroup.length === 0) {
-        //no form group, check and see if we have an input group
-        $formGroup =  $el.parents('.input-group');
+      //dont validate on hidden inputs
+      if(!$el.is(':hidden')) {
+        $el.addClass('invalid');
+        $el.removeClass('valid');
+        $formGroup =  $el.parents('.' + options.parentClassName);
+        //let Developer know that form-group does not exist
         if($formGroup.length === 0) {
-          if(window.console){
-            console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors.');  
+          //no form group, check and see if we have an input group
+          $formGroup =  $el.parents('.input-group');
+          if($formGroup.length === 0) {
+            if(window.console){
+              console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors. id: ' + $el.attr('id'));  
+            }
+            return false;
           }
-          return false;
         }
+        $formGroup.addClass('has-error');
+        $formGroup.removeClass('has-success');
+        
+        var originalValidationMessage = $el[0].validationMessage;
+        
+        if(options.setErrorMessage !== null){
+          options.setErrorMessage.apply(this, $el);
+        }
+        
+        errorMessage = $el[0].validationMessage;
+        
+        if (typeof errorMessage === 'undefined' || errorMessage.length === 0 || errorMessage === originalValidationMessage){
+          errorMessage = $el.attr('title');  
+        }
+        
+        if(errorMessage === undefined) {
+          errorMessage = options.defaultErrorMessage;
+        }
+
+        $el[0].setCustomValidity("");
+
+        //only append if there isn't one. helpful with radios and checkboxes
+        if($formGroup.find('.' + options.errorClassName).length === 0) {
+          $formGroup.append('<label class="' + options.errorClassName + ' inactive" for="' + $el.attr('id') + '">' + errorMessage + '</label>');
+         
+        }
+        var t = setTimeout(function(){
+          $('.' + options.errorClassName).removeClass('inactive');
+        },10);
       }
-      $formGroup.addClass('has-error');
-      $formGroup.removeClass('has-success');
-      
-      var originalValidationMessage = $el[0].validationMessage;
-      
-      if(options.setErrorMessage !== null){
-        options.setErrorMessage.apply(this, $el);
-      }
-      
-      errorMessage = $el[0].validationMessage;
-      
-      if (typeof errorMessage === 'undefined' || errorMessage.length === 0 || errorMessage === originalValidationMessage){
-        errorMessage = $el.attr('title');  
-      }
-      
-      if(errorMessage === undefined) {
-        errorMessage = options.defaultErrorMessage;
+      else {
+        console.log('its hidden2');
       }
 
-      $el[0].setCustomValidity("");
-
-      //only append if there isn't one. helpful with radios and checkboxes
-      if($formGroup.find('.' + options.errorClassName).length === 0) {
-        $formGroup.append('<label class="' + options.errorClassName + ' inactive" for="' + $el.attr('id') + '">' + errorMessage + '</label>');
-       
-      }
-      var t = setTimeout(function(){
-        $('.' + options.errorClassName).removeClass('inactive');
-      },10);
     };
 
     var validityChecker = function(el){
