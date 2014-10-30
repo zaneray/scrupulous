@@ -157,9 +157,6 @@
         $formGroup.removeClass('has-error');
         $formGroup.find('.' + options.errorClassName).remove();
       }
-      else {
-        console.log('its hidden1');
-      }
     };
 
     /*----------------------------------------------
@@ -214,10 +211,6 @@
           $('.' + options.errorClassName).removeClass('inactive');
         },10);
       }
-      else {
-        console.log('its hidden2');
-      }
-
     };
 
     var validityChecker = function(el){
