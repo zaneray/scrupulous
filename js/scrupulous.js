@@ -57,7 +57,7 @@
       var equalToParentId = $(el).attr('data-equal-to');
       if($('#' + equalToParentId).length >= 0) {
         // Compare to another input's value
-        if (el.value != $('#' + equalToParentId).val() || el.value === '') {
+        if (el.value != $('#' + equalToParentId).val()) {
           return false;
         } else {
           return true;
