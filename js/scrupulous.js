@@ -86,7 +86,13 @@
         bit = 1,
         sum = 0,
         val;
-
+      
+      /** no way to validate a masked card, will have to let the backend handle it **/
+      if ( number.match(/^[xX*-]+\d{4}$/g) ){
+        console.log("match a mask")
+        return true;
+      }
+      
       while (len) {
         val = parseInt(number.charAt(--len), 10);
         sum += (bit ^= 1) ? arr[val] : val;
