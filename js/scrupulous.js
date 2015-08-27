@@ -71,6 +71,32 @@
       }
     };
 
+
+    /*----------------------------------------------
+      luhnCheck(el)
+      Returns if an inputs value passes the standard 
+      luhn check alg
+    ----------------------------------------------*/
+    var luhnCheck = function(el){
+
+      var number = el.value;
+      var
+        arr = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9],
+        len = number.length,
+        bit = 1,
+        sum = 0,
+        val;
+
+      while (len) {
+        val = parseInt(number.charAt(--len), 10);
+        sum += (bit ^= 1) ? arr[val] : val;
+      }
+
+      return sum && sum % 10 === 0;
+
+    };
+
+
     /*----------------------------------------------
       checkboxValidity(el)
       function to check if any checkboxes/radios 
@@ -233,6 +259,10 @@
       if ( ! browser.inputtype.number && isNumberField($(el)) ){
         /** browser doesn't support number type **/
         elValidity = numberTypeValidity($el);
+      }
+
+      if($(el).attr('data-creditcard') !== undefined){
+        elValidity = luhnCheck(el);
       }
 
       if(elValidity === true){
