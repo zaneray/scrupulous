@@ -267,7 +267,10 @@
       }
 
       if($(el).attr('data-creditcard') !== undefined){
-        elValidity = luhnCheck(el);
+        if ( elValidity ) {
+          /** first see if html pattern matches, if so, do luhn check. otherwise return false **/
+          elValidity = luhnCheck( el );
+        }
       }
 
       if(elValidity === true){
