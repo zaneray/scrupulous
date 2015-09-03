@@ -6,6 +6,7 @@
       beforeSubmit:          null, // pre validation processing
       valid:                 null,  //Pass a valid function through args
       invalid:               null, //Pass an invalid function through args
+      namespace :            'scrupulous',
       errorClassName:        'error-message', //class name of the error label
       parentClassName:       'form-group', //class name of the parent element where the error label is appended
       defaultErrorMessage:   'This field has an error', //default error message if no title is provided
@@ -23,7 +24,7 @@
 
     //stop everything if checkValidity does not exist, and I'm talking to you <= IE9.
     if(typeof document.createElement( 'input' ).checkValidity != 'function') {
-      $forms.on('submit',function(e){
+      $forms.on('submit.' + options.namespace, function(e){
         if(options.valid !== null) {
           //e.preventDefault();
           return options.valid.call(this);
@@ -303,59 +304,81 @@
 
     loadInputTypeSupport();
 
-    //Check for has-success Validity on change/keyup
-      $inputs.on('change keyup mouseup',function(){
 
-        elValidity = this.checkValidity();
-        $el = $(this);
+      $inputs.each(function(){
 
-        if($el.is(':disabled') === true) {
-          return false; //kill it if it is disabled
-        }
 
-        if($el.hasClass('fn-equal-to')){
-          elValidity = equalTo(this);
-        }
-        
-        if($el.hasClass('fn-notequal-to')){
-          elValidity = !equalTo(this);
-        }
+        // bind Check Validity on blur for all inputs
+        $(this).on('blur.' + options.namespace, function(){
 
-        if($el.is(':checkbox') || $el.is(':radio')){
-          elValidity = checkboxValidity(this);
-        }
+          var $this = $(this);
 
-        if(elValidity === true){
-          setValid($el);
-        }
-      });
+          // trim the value and save back to form input before continuing.
+          $this.val($.trim($this.val()));
 
-    //Check Validity on Blur
-      $inputs.on('blur',function(){
-        var $this = $(this);
-        // trim the value and save back to form input before continuing.
-        $this.val($.trim($this.val()));
-        if($this.attr('type') === 'number' && isNaN($this.val())){ 
-          //exist because letters in a number field register as a blank value
-          $this.val('');
-        }
-        if($this.val() !== '') {
-          validityChecker(this);
+          if($this.attr('type') === 'number' && isNaN($this.val())){
+            //exist because letters in a number field register as a blank value
+            $this.val('');
+          }
+          if($this.val() !== '') {
+            validityChecker(this);
+          }
+          else {
+            //if the form is blank AND required we need to rip out the valid classes
+            if($this.is(':required')) {
+              $this.removeClass('valid').parentsUntil('form-group').removeClass('has-success');
+            }
+
+          }
+
+        });
+
+
+        if ( ! $(this).is("select") ) {
+
+          // if the input isn't a select, bind change keyup and mouseup
+          $( this ).on( 'change.' + options.namespace + ' keyup.' + options.namespace + ' mouseup.' + options.namespace, validityEventCheck );
+
         }
         else {
-          //if the form is blank AND required we need to rip out the valid classes
-          if($this.is(':required')) {
-            $this.removeClass('valid').parentsUntil('form-group').removeClass('has-success');
+
+          // If we are a select, only bind change and input.. not the others, some browsers are cranky
+          $( this ).on( 'change.' + options.namespace + ' input.' + options.namespace, validityEventCheck );
+
+        }
+
+      });
+
+      var validityEventCheck = function(){
+
+        elValidity = this.checkValidity();
+        $el        = $( this );
+
+        if ( $el.is( ':disabled' ) !== true ) {
+
+          if ( $el.hasClass( 'fn-equal-to' ) ) {
+            elValidity = equalTo( this );
+          }
+
+          if ( $el.hasClass( 'fn-notequal-to' ) ) {
+            elValidity = ! equalTo( this );
+          }
+
+          if ( $el.is( ':checkbox' ) || $el.is( ':radio' ) ) {
+            elValidity = checkboxValidity( this );
+          }
+
+          if ( elValidity === true ) {
+            setValid( $el );
           }
 
         }
 
+      };
 
-
-      }); 
 
       //Check Validity for all elements on submit
-      $forms.on('submit',function(e){
+      $forms.on('submit.' + options.namespace,function(e){
         $form = $(this);
 
         if(typeof options.beforeSubmit === "function") {
@@ -363,7 +386,6 @@
         }
 
         $form.find('select, input, textarea').not(':disabled').each(function(){
-
           validityChecker(this);
         });
         if($form.find('.has-error').length > 0){
