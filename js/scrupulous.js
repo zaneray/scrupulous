@@ -315,7 +315,6 @@
 
           if (e.ctrlKey) {
             return false;
-            console.log('ctrl pressed');
           }
 
           var $this = $(this);
