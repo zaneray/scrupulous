@@ -54,8 +54,14 @@
      function that checks if a value is equal to another value
      based on the id value contained in data-equal-to attribue. 
      ----------------------------------------------*/
-    var equalTo = function(el){
-      var equalToParentId = $(el).attr('data-equal-to');
+    var equalTo = function(el,parent){
+      var equalToParentId;
+      if ( typeof parent !== 'undefined'){
+        equalToParentId = parent;
+      }
+      else {
+        equalToParentId = $(el).attr('data-equal-to');
+      }
       if($('#' + equalToParentId).length >= 0) {
         // Compare to another input's value
         if (el.value != $('#' + equalToParentId).val()) {
@@ -259,7 +265,7 @@
       }
 
       if($(el).attr('data-not-equal-to-with-base') !== undefined){
-        elValidity = elValidity && !equalTo(el);
+        elValidity = elValidity && !equalTo(el,$(el).attr('data-not-equal-to-with-base'));
       }
 
       if($el.is(':checkbox') || $el.is(':radio')){
