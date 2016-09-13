@@ -258,6 +258,10 @@
         elValidity = !equalTo(el);
       }
 
+      if($(el).attr('data-not-equal-to-with-base') !== undefined){
+        elValidity = elValidity && !equalTo(el);
+      }
+
       if($el.is(':checkbox') || $el.is(':radio')){
         elValidity = checkboxValidity(el);
       }
