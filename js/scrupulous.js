@@ -252,8 +252,8 @@
     };
 
     var validityChecker = function(el){
-      elValidity = el.checkValidity();
-      $el = $(el);
+      var elValidity = el.checkValidity();
+          $el = $(el);
 
       //if it is an equal-to check status
       if($(el).attr('data-equal-to') !== undefined){
@@ -345,24 +345,21 @@
 
 
         if ( ! $(this).is("select") ) {
-
           // if the input isn't a select, bind change keyup and mouseup
-          $( this ).on( 'change.' + options.namespace + ' keyup.' + options.namespace + ' mouseup.' + options.namespace, validityEventCheck );
+          $( this ).on( 'change.' + options.namespace + ' keyup.' + options.namespace + ' mouseup.' + options.namespace, function(){validityEventCheck(this);} );
 
         }
         else {
-
           // If we are a select, only bind change and input.. not the others, some browsers are cranky
-          $( this ).on( 'change.' + options.namespace + ' input.' + options.namespace, validityEventCheck );
-
+          $( this ).on( 'change.' + options.namespace + ' input.' + options.namespace, function(){validityEventCheck(this);} );
         }
 
       });
 
-      var validityEventCheck = function(){
+      var validityEventCheck = function(el){
 
-        elValidity = this.checkValidity();
-        $el        = $( this );
+        var elValidity = el.checkValidity();
+        $el        = $( el );
 
         if ( $el.is( ':disabled' ) !== true ) {
 
@@ -383,7 +380,6 @@
           }
 
         }
-
       };
 
 
