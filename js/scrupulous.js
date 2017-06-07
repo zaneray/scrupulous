@@ -17,7 +17,7 @@
 
     var $forms        = this,
         $inputs       = $forms.find('select, input, textarea'),
-        emailPattern  = "[^@]+@[^@]+\.[a-zA-Z]{2,6}",
+        emailPattern  = "[^@]+@[^@]+\\.[a-zA-Z]{2,6}",
         browser       = {},
         $el,$form,$formGroup,elId,validity,errorMessage;
 
