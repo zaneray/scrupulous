@@ -1,0 +1,13 @@
+{
+    "name": "scrupulous",
+    "version": "1.2.0",
+    "description": "Scrupulous.js is super simple, client side, inline form validation using HTML5 attributes.",
+    "author": "Jeremiah Martin",
+    "dependencies": {
+
+    },
+    "devDependencies": {
+       
+    },
+    "engine": "node >= 0.4.1"
+}
