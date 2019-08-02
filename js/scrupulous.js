@@ -231,7 +231,7 @@
         errorMessage = $el[0].validationMessage;
         
         if (typeof errorMessage === 'undefined' || errorMessage.length === 0 || errorMessage === originalValidationMessage){
-          errorMessage = $el.attr('title');  
+          errorMessage = $el.attr('data-title');
         }
         
         if(errorMessage === undefined) {
@@ -242,7 +242,7 @@
 
         //only append if there isn't one. helpful with radios and checkboxes
         if($formGroup.find('.' + options.errorClassName).length === 0) {
-          $formGroup.append('<label class="' + options.errorClassName + ' inactive" for="' + $el.attr('id') + '">' + errorMessage + '</label>');
+          $formGroup.prepend('<label class="' + options.errorClassName + ' inactive" for="' + $el.attr('id') + '">' + errorMessage + '</label>');
          
         }
         var t = setTimeout(function(){
