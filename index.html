@@ -37,7 +37,9 @@
           <input type="text"
                  class="form-control"
                  id="name"
-                 name="name" data-title="Please Enter a Name" required>
+                 name="name"
+                 title="Please Enter a Name"
+                 required>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
@@ -45,7 +47,7 @@
                  class="form-control"
                  id="email"
                  name="email"
-                 data-title="Please Enter a Valid Email Address"
+                 title="Please Enter a Valid Email Address"
                  required>
         </div>
 
@@ -64,7 +66,7 @@
                  id="wrapping"
                  name="wrapping"
                  required
-                 data-title="This error should wrap, this error should wrap, This error should wrap, this error should wrap">
+                 title="This error should wrap, this error should wrap, This error should wrap, this error should wrap">
         </div>
         <div class="form-group">
           <label for="disabled-input">Disabled Field</label>
@@ -73,14 +75,14 @@
                  id="disabled-input"
                  name="disabled-input"
                  disabled
-                 data-title="This field was disabled">
+                 title="This field was disabled">
         </div>
         <div class="checkbox">
           <label><input type="checkbox" id="toggle-disabled" name="toggle-disabled" value="true">Enable this field</label>
         </div>
         <div class="form-group">
           <label for="state">State</label>
-          <select id="state" name="state" class="form-control" data-title="Please select a state" required>
+          <select id="state" name="state" class="form-control" title="Please select a state" required>
             <option value="">Choose One</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
@@ -140,7 +142,7 @@
           <textarea class="form-control"
                     id="textarea"
                     name="textarea"
-                    data-title="This field is required"
+                    title="This field is required"
                     required></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
@@ -154,7 +156,7 @@
           <input type="number"
                  class="form-control"
                  id="age" name="age"
-                 data-title="Your Age can only be a number"
+                 title="Your Age can only be a number"
                  required>
         </div>
         <div class="form-group">
@@ -165,7 +167,7 @@
                  name="numberminmax"
                  min="20"
                  max="30"
-                 data-title="Enter a Valid Number"
+                 title="Enter a Valid Number"
                  required>
         </div>
         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
@@ -181,7 +183,7 @@
                  pattern=".{6,}"
                  class="form-control"
                  id="inputpw"
-                 data-title="Passwords are at Least 6 Characters"
+                 title="Passwords are at Least 6 Characters"
                  placeholder="Minimum 6 Characters"
                  required>
         </div>
@@ -192,7 +194,7 @@
                  class="form-control"
                  data-equal-to="inputpw"
                  id="inputpwrepeat"
-                 data-title="Passwords Must Match"
+                 title="Passwords Must Match"
                  required>
         </div>
         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
@@ -208,20 +210,20 @@
                           value="value1"
                           required
                           name="inputcheckbox"
-                          data-title="Please Select an Option 1">Check me out</label>
+                          title="Please Select an Option 1">Check me out</label>
           </div>
           <div class="checkbox">
             <label><input type="checkbox"
                           value="value2"
                           required
                           name="inputcheckbox"
-                          data-title="Please Select an Option 2">Check me out</label>
+                          title="Please Select an Option 2">Check me out</label>
           </div>
           <div class="checkbox">
             <label><input type="checkbox"
                           value="value3"
                           required name="inputcheckbox"
-                          data-title="Please Select an Option 3">Check me out</label>
+                          title="Please Select an Option 3">Check me out</label>
           </div>
         </div>
         <div class="form-group">
@@ -230,19 +232,19 @@
             <label><input type="radio"
                           value="value1"
                           required name="inputradio"
-                          data-title="Please Select an Option 1"> Check me out</label>
+                          title="Please Select an Option 1"> Check me out</label>
           </div>
           <div class="radio">
             <label><input type="radio"
                           value="value2"
                           required name="inputradio"
-                          data-title="Please Select an Option 2"> Check me out</label>
+                          title="Please Select an Option 2"> Check me out</label>
           </div>
           <div class="radio">
             <label><input type="radio"
                           value="value3"
                           required name="inputradio"
-                          data-title="Please Select an Option 3"> Check me out</label>
+                          title="Please Select an Option 3"> Check me out</label>
           </div>
         </div>
         <button type="submit" class="btn btn-primary btn-lg">Submit</button>
@@ -258,7 +260,7 @@
                  class="form-control"
                  id="numberinput"
                  placeholder="Enter Number"
-                 data-title="Number is Required"
+                 title="Number is Required"
                  required>
         </div>
         <div class="form-group">
@@ -266,7 +268,7 @@
                  class="form-control"
                  id="exampleInputEmail2"
                  placeholder="Enter email"
-                 data-title="Email is Required"
+                 title="Email is Required"
                  required>
         </div>
         <div class="form-group">
@@ -274,7 +276,7 @@
                  class="form-control"
                  id="exampleInputPassword2"
                  placeholder="Password"
-                 data-title="Password is Required"
+                 title="Password is Required"
                  required>
         </div>
         <button type="submit" class="btn btn-primary">Sign in</button>
@@ -291,7 +293,7 @@
                  class="form-control"
                  id="name-2"
                  name="name"
-                 data-title="Please Enter a Name"
+                 title="Please Enter a Name"
                  required>
         </div>
         <div class="form-group">
@@ -300,7 +302,7 @@
                  class="form-control"
                  id="email-2"
                  name="email"
-                 data-title="Please Enter a Valid Email Address"
+                 title="Please Enter a Valid Email Address"
                  required>
         </div>
         <div class="form-group">
@@ -309,7 +311,7 @@
                  class="form-control"
                  id="age-2"
                  name="age"
-                 data-title="Your Age can only be a number"
+                 title="Your Age can only be a number"
                  required>
         </div>
       </fieldset>

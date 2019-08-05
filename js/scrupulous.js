@@ -231,7 +231,7 @@
         errorMessage = $el[0].validationMessage;
         
         if (typeof errorMessage === 'undefined' || errorMessage.length === 0 || errorMessage === originalValidationMessage){
-          errorMessage = $el.attr('data-title');
+          errorMessage = $el.attr('title');
         }
         
         if(errorMessage === undefined) {
