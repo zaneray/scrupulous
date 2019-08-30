@@ -12,6 +12,8 @@
       defaultErrorMessage:   'This field has an error', //default error message if no title is provided
       setErrorMessage:       null  // used to set custom HTML5 validationMessage
     };
+    
+    options.validationTrigger  = 'change.' +  options.namespace + ' keyup.' +  options.namespace; //event to pass for the validation event defaults to when a field changes
 
     $.extend( options, args );
 
@@ -318,8 +320,12 @@
       $inputs.each(function(){
 
 
-        // bind Check Validity on blur for all inputs
-        $(this).on('blur.' + options.namespace, function(){
+        // bind Check Validity on validationTrigger for all inputs
+        $(this).on(options.validationTrigger, function(e){
+
+          if (e.ctrlKey) {
+            return false;
+          }
 
           var $this = $(this);
 
