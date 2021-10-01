@@ -28,7 +28,7 @@
         if(options.valid !== null) {
           //e.preventDefault();
           return options.valid.call(this);
-        } 
+        }
         else {
           return true;
         }
@@ -52,7 +52,7 @@
     /*----------------------------------------------
       equalTo(el);
      function that checks if a value is equal to another value
-     based on the id value contained in data-equal-to attribue. 
+     based on the id value contained in data-equal-to attribue.
      ----------------------------------------------*/
     var equalTo = function(el,parent){
       var equalToParentId;
@@ -81,7 +81,7 @@
 
     /*----------------------------------------------
       luhnCheck(el)
-      Returns if an inputs value passes the standard 
+      Returns if an inputs value passes the standard
       luhn check alg
     ----------------------------------------------*/
     var luhnCheck = function(el){
@@ -93,12 +93,12 @@
         bit = 1,
         sum = 0,
         val;
-      
+
       /** no way to validate a masked card, will have to let the backend handle it **/
       if ( number.match(/^[xX*-]+\d{4}$/g) ){
         return true;
       }
-      
+
       while (len) {
         val = parseInt(number.charAt(--len), 10);
         sum += (bit ^= 1) ? arr[val] : val;
@@ -111,9 +111,9 @@
 
     /*----------------------------------------------
       checkboxValidity(el)
-      function to check if any checkboxes/radios 
-      are checked then validate that section of 
-      the form 
+      function to check if any checkboxes/radios
+      are checked then validate that section of
+      the form
     ----------------------------------------------*/
 
     var checkboxValidity = function(el){
@@ -168,8 +168,8 @@
 
     /*----------------------------------------------
       setValid($el)
-      function that removes all invalid classes and 
-      error labels. 
+      function that removes all invalid classes and
+      error labels.
     ----------------------------------------------*/
 
     var setValid = function($el) {
@@ -186,7 +186,7 @@
             /*
             Don't think we need this on valid anymore.
             if(window.console){
-              console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors. id: ' + $el.attr('id'));  
+              console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors. id: ' + $el.attr('id'));
             }*/
             return false;
           }
@@ -200,7 +200,7 @@
     /*----------------------------------------------
       setInvalid($el)
       function that addes invalid classes and appends
-      error message labels to the parent div. 
+      error message labels to the parent div.
     ----------------------------------------------*/
     var setInvalid = function($el) {
       //dont validate on hidden inputs
@@ -214,26 +214,26 @@
           $formGroup =  $el.parents('.input-group');
           if($formGroup.length === 0) {
             if(window.console){
-              console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors. id: ' + $el.attr('id'));  
+              console.log('Warning: Scrupulous needs a .form-group, .input-group or parentClassName element to append errors. id: ' + $el.attr('id'));
             }
             return false;
           }
         }
         $formGroup.addClass('has-error');
         $formGroup.removeClass('has-success');
-        
+
         var originalValidationMessage = $el[0].validationMessage;
-        
+
         if(options.setErrorMessage !== null){
           options.setErrorMessage.apply(this, $el);
         }
-        
+
         errorMessage = $el[0].validationMessage;
-        
+
         if (typeof errorMessage === 'undefined' || errorMessage.length === 0 || errorMessage === originalValidationMessage){
-          errorMessage = $el.attr('title');  
+          errorMessage = $el.attr('title');
         }
-        
+
         if(errorMessage === undefined) {
           errorMessage = options.defaultErrorMessage;
         }
@@ -243,7 +243,7 @@
         //only append if there isn't one. helpful with radios and checkboxes
         if($formGroup.find('.' + options.errorClassName).length === 0) {
           $formGroup.append('<label class="' + options.errorClassName + ' inactive" for="' + $el.attr('id') + '">' + errorMessage + '</label>');
-         
+
         }
         var t = setTimeout(function(){
           $('.' + options.errorClassName).removeClass('inactive');
@@ -291,7 +291,7 @@
         setInvalid($el);
       }
     };
-    
+
     /**
      * Load browser support for HTML5 elements.
      */
@@ -372,7 +372,7 @@
           }
 
           if ( $el.is( ':checkbox' ) || $el.is( ':radio' ) ) {
-            elValidity = checkboxValidity( this );
+            elValidity = checkboxValidity(el);
           }
 
           if ( elValidity === true ) {
@@ -401,7 +401,7 @@
             $("html, body").animate({ scrollTop: errorScrollTop }, 300);
           }
           $form.find('.has-error .invalid:first').focus();
-         
+
            //call the invalid callback, rely on that to return true or false to submit the form
           if(options.invalid !== null) {
             return options.invalid.call(this);
@@ -412,11 +412,11 @@
         }
         else {
           //successful validation
-          
+
           //call the invalid callback, rely on that to return true or false to submit the form
           if(options.valid !== null) {
             return options.valid.call(this);
-          } 
+          }
           else {
             return true;
           }
